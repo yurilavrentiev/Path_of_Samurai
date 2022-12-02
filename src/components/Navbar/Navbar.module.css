@@ -7,9 +7,12 @@
 
 .item a {
   text-decoration: none;
-  color: rgb(181, 189, 197)
+  color: rgb(181, 189, 197);
 }
 
 .item a.active {
-  color: rgb(88, 161, 240)
+  color: rgb(88, 161, 240);
+}
+.item a:hover {
+  font-weight: 600;
 }

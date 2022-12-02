@@ -1,0 +1,14 @@
+.postsBlok {
+  padding: 10px;
+}
+
+.btn {
+  font-size: 20px;
+  background-color: rgb(78, 96, 96);
+  color: rgb(181, 189, 197);
+}
+
+.btn:hover {
+  color: rgb(78, 96, 96);
+  background-color: rgb(181, 189, 197);
+}

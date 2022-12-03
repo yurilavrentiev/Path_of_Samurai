@@ -10,26 +10,8 @@
 
 }
 
-.user {
-  margin: 10px auto;
-
-}
-
-.user a {
-  text-decoration: none;
-  color: rgb(78, 96, 96);
-}
-
-.user a.active {
-  color: rgb(88, 161, 240)
-}
-
 .massages {
   padding: 10px;
 }
 
-.massage {
-  font-size: 20px;
-  color: rgb(78, 96, 96);
-  margin: 5px auto;
-}
+

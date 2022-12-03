@@ -1,0 +1,13 @@
+.user {
+  margin: 10px auto;
+
+}
+
+.user a {
+  text-decoration: none;
+  color: rgb(78, 96, 96);
+}
+
+.user a.active {
+  color: rgb(88, 161, 240)
+}

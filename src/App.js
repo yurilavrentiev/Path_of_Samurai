@@ -9,7 +9,7 @@ import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import { Routes, Route } from "react-router-dom";
 
-function App({ state, addPost, updatePostText }) {
+function App({ state, dispatch }) {
   return (
     <div className="app-wrapper">
       <Header />
@@ -18,20 +18,19 @@ function App({ state, addPost, updatePostText }) {
         <Routes>
           <Route
             path="/profile/*"
-            element={
-              <Profile
-                state={state.profilePage}
-                addPost={addPost}
-                updatePostText={updatePostText}
-              />
-            }
+            element={<Profile state={state.profilePage} dispatch={dispatch} />}
           />
           <Route path="/music/*" element={<Music />} />
           <Route path="/news/*" element={<News />} />
           <Route path="/settings/*" element={<Settings />} />
           <Route
             path="/dialogs/*"
-            element={<Dialogs state={state.dialogsPage} />}
+            element={
+              <Dialogs 
+                state={state.dialogsPage} 
+                dispatch={dispatch}
+              />
+            }
           />
         </Routes>
       </div>

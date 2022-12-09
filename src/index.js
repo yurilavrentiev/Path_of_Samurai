@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import store from "./Redux/state";
+import store from "./Redux/redux-store";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -13,13 +13,12 @@ export function rerenderEntireTree(state) {
     <BrowserRouter>
       <App 
         state={state} 
-        addPost={store.addPost.bind(store)} 
-        updatePostText={store.updatePostText.bind(store)} 
+        dispatch={store.dispatch.bind(store)}
       />
     </BrowserRouter>
   );
 }
 
 rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {rerenderEntireTree(store.getState())});
 

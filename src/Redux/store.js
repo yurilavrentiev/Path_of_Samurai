@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+
 let store = {
   _state: {
     profilePage: {
@@ -9,6 +12,7 @@ let store = {
       ],
     },
     dialogsPage: {
+      newDialogText: '',
       massages: [
         {id: "1", massage: "How are you?"},
         {id: "2", massage: "Where is my spoon?"},
@@ -24,29 +28,24 @@ let store = {
       ],
     },
   },
-  getState() {
-    return this._state;
-  },
   _callSubscriber() {
   },
-  addPost () {
-    const newPost = {
-      id: (this._state.profilePage.posts.length + 1).toString(),
-      massage: this._state.profilePage.newPostText,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber(this._state)
-  },
-  updatePostText (postText) {
-    this._state.profilePage.newPostText = postText;
-    this._callSubscriber(this._state);
+
+  getState() {
+    return this._state;
   },
   subscribe(observer) {
     this._callSubscriber = observer;
   },
-}
 
+  dispatch (action) {
+
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+    this._callSubscriber(this._state);
+  }
+}
 
 export default store;
 

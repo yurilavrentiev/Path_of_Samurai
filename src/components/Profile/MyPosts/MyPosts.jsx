@@ -1,20 +1,23 @@
 import React from "react";
+import { addPostActionCreator, updateTextActionCreator } from "../../../Redux/profileReducer";
 import Post from "../Post/Post";
 import styles from "./MyPosts.module.css";
 
-const MyPosts = ({ state, addPost, updatePostText }) => {
+
+
+const MyPosts = ({ state, dispatch }) => {
+
   let postsElements = state.posts.map((post) => (
     <Post key={post.id} massage={post.massage} />
   ));
   
-  const textArea = React.createRef();
-
   const handleAddPost = () => {
-    addPost();
+    dispatch(addPostActionCreator());
   };
-  const handleOnChange = () => {
-    const text = textArea.current.value;
-    updatePostText(text);
+
+  const handleOnChange = (event) => {
+    const text = event.target.value;
+    dispatch(updateTextActionCreator(text));
   }
 
   return (
@@ -22,10 +25,10 @@ const MyPosts = ({ state, addPost, updatePostText }) => {
       <h3>My Posts</h3>
       <div>
         <div>
-          <textarea 
-          ref={textArea}
+          <textarea
           value={state.newPostText}
           onChange={handleOnChange}
+          placeholder='Enter your post text...'
           />
         </div>
         <div>

@@ -1,16 +1,13 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import style from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = ({ state, dispatch }) => {
+const Profile = ({ store }) => {
   return (
     <div className={style.page}>
       <ProfileInfo />
-      <MyPosts 
-        state={state} 
-        dispatch={dispatch}
-        />
+      <MyPostsContainer />
     </div>
   )
 }

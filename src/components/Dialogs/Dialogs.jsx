@@ -1,26 +1,28 @@
 import React from "react";
-import {
-  sendMassageActionCreator,
-  updateMassageActionCreator,
-} from "../../Redux/dialogsReducer";
 import DialogItem from "./DialogItem/DialogItem";
 import style from "./Dialogs.module.css";
 import Massage from "./Massage/Massage";
 
-const Dialogs = ({ state, dispatch }) => {
-  let dialogsElements = state.dialogs.map((dialog) => (
+const Dialogs = ({ 
+                dialogs, 
+                massages, 
+                onChange, 
+                sendMassage,
+                newDialogText,
+              }) => {
+  let dialogsElements = dialogs.map((dialog) => (
     <DialogItem key={dialog.id} id={dialog.id} name={dialog.name} />
   ));
-  let massagesElements = state.massages.map((massage) => (
+  let massagesElements = massages.map((massage) => (
     <Massage key={massage.id} massage={massage.massage} />
   ));
 
   const handleOnChange = (event) => {
     const text = event.target.value;
-    dispatch(updateMassageActionCreator(text));
+    onChange(text);
   };
   const handleSendMassage = () => {
-    dispatch(sendMassageActionCreator());
+    sendMassage();
   };
   return (
     <>
@@ -31,7 +33,7 @@ const Dialogs = ({ state, dispatch }) => {
       <div className={style.input}>
         <textarea
           onChange={handleOnChange}
-          value={state.newDialogText}
+          value={newDialogText}
           placeholder="Enter your massage..."
           rows="2"
         />

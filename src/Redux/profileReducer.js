@@ -11,23 +11,27 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'add':
+    case 'add': {
       const newPost = {
         id: (state.posts.length + 1).toString(),
         massage: state.newPostText,
       };
-      state.posts.push(newPost);
-      state.newPostText = '';
+      const newState = {...state};
+      newState.posts = [...state.posts]
+      newState.posts.push(newPost);
+      newState.newPostText = "";
 
-      return state;
+      return newState;
+    }
+    case 'update': {
+      const newState = {...state};
+      newState.newPostText = action.payload;
 
-    case 'update':
-      state.newPostText = action.payload;
-
-      return state;
-
+      return newState;
+    }
     default: 
       return state;
+    
   }
 }
 

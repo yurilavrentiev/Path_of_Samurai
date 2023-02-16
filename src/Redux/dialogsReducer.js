@@ -18,18 +18,22 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'send':
+    case 'send': {
       const newMassage = {
         id: (state.massages.length +1).toString(),
         massage: state.newDialogText,
       };
-      state.massages.push(newMassage);
-      state.newDialogText = '';
-      return state;
-    
-    case 'set':
-      state.newDialogText = action.payload;
-      return state;
+      const newState = {...state};
+      newState.massages = [...state.massages]
+      newState.massages.push(newMassage);
+      newState.newDialogText = "";
+      return newState;
+    }
+    case 'set': {
+      const newState = {...state};
+      newState.newDialogText = action.payload;
+      return newState;
+    }
     default: 
       return state;
   }
